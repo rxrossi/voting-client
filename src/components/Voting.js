@@ -1,20 +1,19 @@
 import React from 'react';
+import Winner from './Winner';
+import Vote from './Vote';
 
-class Voting extends React.Component {
-	render() {
-		const { pair } = this.props;
-
-		return(
+class Voting extends React.PureComponent {
+	render () {
+		const { winner, ...otherProps } = this.props; 
+		return (
 			<div className="voting">
 				{
-					(pair || []).map( entry => (
-						<button key={entry}>
-							<h1>{entry}</h1>
-						</button>
-					))
+					winner !== undefined ?
+					<Winner winner={winner} /> :
+					<Vote {...otherProps} /> 
 				}
 			</div>
-		);
+		);	
 	}
 }
 export default Voting;
